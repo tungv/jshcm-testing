@@ -1,0 +1,43 @@
+{
+  "name": "jshcm-testing",
+  "version": "0.0.1",
+  "description": "JS HCM meetup - testing nodejs with coffeescript chai mocha example app",
+  "main": "server/app.coffee",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "~1.9.0",
+    "config": "~0.4.35",
+    "express": "~3.4.8",
+    "fibrous": "~0.3.3",
+    "lodash": "~2.4.1",
+    "redis": "~0.10.1",
+    "yaml": "~0.2.3"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.7.1"
+  },
+  "scripts": {
+    "test": "exports NODE_ENV=testing && mocha --compilers coffee:coffee-script/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gmanvn/jshcm-testing.git"
+  },
+  "keywords": [
+    "js",
+    "meetup",
+    "hcm",
+    "testing",
+    "coffeescript",
+    "chai",
+    "mocha"
+  ],
+  "author": "me@tungv.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gmanvn/jshcm-testing/issues"
+  },
+  "homepage": "https://github.com/gmanvn/jshcm-testing"
+}
