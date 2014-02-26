@@ -44,7 +44,6 @@ describe "Redis Adapter", ->
         array: [1,2,3,4]
         number: 10
         string: "abc"
-        undefined: undefined
         null: null
       }
 
@@ -54,4 +53,15 @@ describe "Redis Adapter", ->
           data = redis.sync.readJSON key
           expect(data).eql value, "input must be deeply equal to ouput for type=#{key}"
 
+        done()
+
+    ## this is an edge case so we should put it to a separated case so we can have special message
+    it "should handle undefined as well", (done)->
+      fibrous.run ->
+        redis.sync.writeJSON "undef", undefined
+        data = redis.sync.readJSON "undef"
+
+        ## we cannot use should he because data can be null or undefined
+        ## which don't have any prototype for chaijs to extend
+        expect(data).to.be.an 'undefined', "maybe you forget to handle undefined"
         done()

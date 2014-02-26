@@ -50,8 +50,11 @@ questions = [
 
 module.exports = (cb)->
   require('fibrous').run ->
+    redis.clear() ## no .sync here because clear() doesn't take a callback
     for question in questions
       id = question.id
       redis.sync.writeJSON "question:#{id}", question
       redis.sync.pushSet "questions", id
+
+    return questions
   , cb

@@ -23,11 +23,12 @@ class Question
       return cb err if err?
       cb null, new Question question
 
-  @getQuestionList = (cb)->
+  @updateAll = (cb)->
     fibrous.run =>
       key = "questions"
       arrayId = redis.sync.readSet key
 
-      @fromRedis id for id in arrayId
+      @fromRedis.sync id for id in arrayId
     , cb
 
+module.exports = Question
