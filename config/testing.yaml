@@ -1,0 +1,6 @@
+port:
+  3300
+
+redis:
+  host: localhost
+  port: 7777

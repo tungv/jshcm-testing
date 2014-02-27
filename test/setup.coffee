@@ -58,3 +58,5 @@ module.exports = (cb)->
 
     return questions
   , cb
+
+module.exports()
