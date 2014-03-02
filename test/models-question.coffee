@@ -23,9 +23,9 @@ describe "Models/Question", ->
     it "updateAll()", ->
       Object.keys(Question.cache).length.should.equal 4, "Four sample questions should be loaded"
 
-      ## an example of what is not necessary
-      ## since updateAll() does no more than just reading and we tested redis-adapter
       for question in sampleData
         id = question.id
-        question.should.be.eql Question.cache[id]
+        cached = Question.cache[id]
+        'id options q'.split(' ').forEach (prop)->
+          question[prop].should.be.eql cached[prop], "#{prop} should be the same"
 

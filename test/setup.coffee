@@ -59,4 +59,6 @@ module.exports = (cb)->
     return questions
   , cb
 
-module.exports()
+
+## for this demo purpose only
+module.exports() if process.env.NODE_ENV isnt 'testing'

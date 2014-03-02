@@ -16,6 +16,14 @@ class Question
     ## cache data to in-memory cache
     Question.cache[@id] = this
 
+  toJSON: ()->
+    id: @id
+    q: @q
+    options: _.shuffle @options
+
+  checkAnwser: (ans)->
+    ans is @options[0]
+
   ## class method (static method)
   @fromRedis = (id, cb)->
     key = "question:#{id}"
