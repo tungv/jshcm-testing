@@ -16,8 +16,11 @@ describe 'API', ->
     app.start (err)->
       if err? then done err else done()
 
+  ## close port after tests done
+  after -> app.close()
+
   ## begin to test
-  describe "GET /question/random/:count", ->
+  describe "GET /question/random/3", ->
     resp = {}
     body = {}
 
@@ -30,9 +33,9 @@ describe 'API', ->
         body = _body
         done()
 
-    it 'should returns 200 HTTP code', -> resp.statusCode.should.equal 200
-    it 'should returns valid JSON string', -> body = JSON.parse body
-    it 'should returns 3 questions', ->
+    it 'should return 200 HTTP code', -> resp.statusCode.should.equal 200
+    it 'should return valid JSON string', -> body = JSON.parse body
+    it 'should return 3 questions', ->
       body.length.should.equal 3
       for question in body
         ## property existence validation

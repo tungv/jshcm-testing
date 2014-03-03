@@ -14,13 +14,13 @@ describe "Models/Question", ->
         done()
         sampleData = data
 
-  describe "load data for the first time", ->
+  describe "updateAll()", ->
     ## using a hook here so we can run test cases synchronously
     before (done)->
       Question.updateAll (err)->
         if err then done false else done()
 
-    it "updateAll()", ->
+    it "should cache 4 questions from redis", ->
       Object.keys(Question.cache).length.should.equal 4, "Four sample questions should be loaded"
 
       for question in sampleData

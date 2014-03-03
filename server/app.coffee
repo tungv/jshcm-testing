@@ -13,6 +13,7 @@ app.set 'env', process.env.NODE_ENV || 'development'
 ## binding routes
 app.get '/question/random/:count', (req, res)->
   count = req.params['count']
+#  count = 2
   allQuestions = Object.keys Question.cache
   pickedIdArray = random allQuestions, count
   pickedQuestions = pickedIdArray.map (id)-> Question.cache[id]
@@ -37,10 +38,18 @@ module.exports = app
 
 noop = ->
 
+
+httpServer = null
+
 app.start = (cb=noop)->
   Question.updateAll (err)->
     return cb err if err?
 
-    app.listen config['port']
+    httpServer = app.listen config['port']
     console.log "app is listening on port: #{config['port']} - mode: #{app.get 'env'}"
     cb null
+
+## good for watching tests
+app.close = ->
+  throw new Error "App didn't start. Cannot close." unless httpServer
+  httpServer?.close()
