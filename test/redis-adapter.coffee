@@ -13,7 +13,7 @@ describe "Redis Adapter", ->
     redis = new Redis config["redis"]
     redis.clear (err)->
       if err
-        done false
+        done err
       else
         done()
 

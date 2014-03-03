@@ -9,16 +9,16 @@ describe "Models/Question", ->
   before (done)->
     setup (err, data)->
       if err
-        done false
+        done err
       else
-        done()
         sampleData = data
+        done()
 
   describe "updateAll()", ->
     ## using a hook here so we can run test cases synchronously
     before (done)->
       Question.updateAll (err)->
-        if err then done false else done()
+        if err then done err else done()
 
     it "should cache 4 questions from redis", ->
       Object.keys(Question.cache).length.should.equal 4, "Four sample questions should be loaded"
