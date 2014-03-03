@@ -8,7 +8,7 @@ how to run
 
 start with `npm install`
 
-you need to start 2 different redis instance by
+you need to start 2 different redis instances by
 ```bash
 redis-server --port <port number>
 ```
